@@ -35,8 +35,8 @@ let baseMaps = {
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
-  center: [43.7, -79.3],
-  zoom: 11,
+  center: [39.5, -98.5],
+  zoom: 3,
   layers: [satelliteStreets]
 });
 
@@ -44,22 +44,22 @@ let map = L.map('mapid', {
 L.control.layers(baseMaps).addTo(map);
 
 //access url airport information
-let airportData = "https://raw.githubusercontent.com/raineytracyn/Mapping_Earthquakes/Mapping_GeoJSON_Points/majorAirports.json"
-let torontoData = "https://raw.githubusercontent.com/raineytracyn/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/Mapping_GeoJSON_Linestrings/torontoRoutes.json"
-let torontoHoods  = "https://raw.githubusercontent.com/raineytracyn/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/Mapping_GeoJSON_Polygons/torontoNeighborhoods.json"
+//let airportData = "https://raw.githubusercontent.com/raineytracyn/Mapping_Earthquakes/Mapping_GeoJSON_Points/majorAirports.json"
+//let torontoData = "https://raw.githubusercontent.com/raineytracyn/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/Mapping_GeoJSON_Linestrings/torontoRoutes.json"
+//let torontoHoods  = "https://raw.githubusercontent.com/raineytracyn/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/Mapping_GeoJSON_Polygons/torontoNeighborhoods.json"
+
 // Create a style for the lines.
-let myStyle = {
-  color: "#ffffa1",
-  weight: 2
-}
+// let myStyle = {
+//   color: "#ffffa1",
+//   weight: 2
+// }
 
 
-// Grabbing our GeoJSON data.
-d3.json(torontoHoods).then(function(data) {
-    console.log(data);
-// Creating a GeoJSON layer with the retrieved data.
+// Retrieve the earthquake GeoJSON data.
+d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson").then(function(data) {
+  // Creating a GeoJSON layer with the retrieved data.
   L.geoJson(data).addTo(map);
-})
+});
 
 
 
